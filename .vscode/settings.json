@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "buffer.h": "c",
+        "defs.h": "c"
+    }
+}
