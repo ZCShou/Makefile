@@ -3,6 +3,12 @@
 
 &emsp;&emsp;为了加深学习印象，我在过程中添加了一些内容、图示等等，因此，本文与作者的原文稍有差异，但主体内容没有变化！还有，该系列文章应该是翻译整理自 [GNU Make Manual](https://www.gnu.org/software/make/manual/)，英文比较好的也可以直接去看这个官方手册。
 
+
+# 相关内容
+项目主页： https://github.com/ZCShou/Makefile
+
+网页在线版： https://zcshou.github.io/Makefile/
+
 # 关于本文档
 1. 本文档系统使用开源文档网站生成器 **[docsify](https://docsify.js.org/#/)** 搭建，文档格式均为 Markdown 格式。
 2. 文档中的图例使用开源软件 **[draw.io](https://www.diagrams.net/)** 绘制，并导出为 .PNG。所有图示的源码可以在这里下载（可使用 draw.io 打开即可）。
