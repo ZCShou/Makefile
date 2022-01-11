@@ -1,0 +1,36 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+AR	examples/exp1/Makefile	/^AR		= ar$/;"	m
+AS	examples/exp1/Makefile	/^AS		= as$/;"	m
+CC	examples/exp1/Makefile	/^CC		= gcc$/;"	m
+CPP	examples/exp1/Makefile	/^CPP		= $(CC) -E$/;"	m
+LD	examples/exp1/Makefile	/^LD		= ld$/;"	m
+LDR	examples/exp1/Makefile	/^LDR		= ldr$/;"	m
+NM	examples/exp1/Makefile	/^NM		= nm$/;"	m
+OBJCOPY	examples/exp1/Makefile	/^OBJCOPY		= objcopy$/;"	m
+OBJDUMP	examples/exp1/Makefile	/^OBJDUMP		= objdump$/;"	m
+STRIP	examples/exp1/Makefile	/^STRIP		= strip$/;"	m
+clean	examples/exp1/Makefile	/^clean :$/;"	t
+command	examples/exp1/command.c	/^int command(void)$/;"	f	typeref:typename:int
+command.o	examples/exp1/Makefile	/^command.o : command.c defs.h command.h$/;"	t
+display	examples/exp1/display.c	/^int display(void)$/;"	f	typeref:typename:int
+display.o	examples/exp1/Makefile	/^display.o : display.c defs.h buffer.h$/;"	t
+edit	examples/exp1/Makefile	/^edit : main.o kbd.o command.o display.o \\$/;"	t
+files	examples/exp1/files.c	/^int files(void)$/;"	f	typeref:typename:int
+files.o	examples/exp1/Makefile	/^files.o : files.c defs.h buffer.h command.h$/;"	t
+insert	examples/exp1/insert.c	/^int insert(void)$/;"	f	typeref:typename:int
+insert.o	examples/exp1/Makefile	/^insert.o : insert.c defs.h buffer.h$/;"	t
+kbd	examples/exp1/kbd.c	/^int kbd(void)$/;"	f	typeref:typename:int
+kbd.o	examples/exp1/Makefile	/^kbd.o : kbd.c defs.h command.h$/;"	t
+main	examples/exp1/main.c	/^int main(int argc, char* argv[])$/;"	f	typeref:typename:int
+main.o	examples/exp1/Makefile	/^main.o : main.c defs.h$/;"	t
+rm	examples/exp1/Makefile	/^rm			= del \/f$/;"	m
+search	examples/exp1/search.c	/^int search(void)$/;"	f	typeref:typename:int
+search.o	examples/exp1/Makefile	/^search.o : search.c defs.h buffer.h$/;"	t
+utils	examples/exp1/utils.c	/^int utils(void)$/;"	f	typeref:typename:int
+utils.o	examples/exp1/Makefile	/^utils.o : utils.c defs.h$/;"	t
