@@ -1,5 +1,104 @@
-- 架构
-    - [架构设计](/Framework/Framework.md)
-    - [应用设计](/Framework/Application.md)
-    - [驱动设计](/Framework/Drivers.md)
+- [目录](content/topic.md)
 
+- [概述](content/summary.md)
+
+
+<!-- # 目录
+- 概述
+  - 关于程序的编译和链接
+- makefile介绍
+  - makefile的规则
+  - 一个示例
+  - make是如何工作的
+  - makefile中使用变量
+  - 让make自动推导
+  - 另类风格的makefiles
+  - 清空目标文件的规则
+  - Makefile里有什么？
+  - Makefile的文件名
+  - 引用其它的Makefile
+  - 环境变量MAKEFILES
+  - make的工作方式
+- 书写规则
+  - 规则举例
+  - 规则的语法
+  - 在规则中使用通配符
+  - 文件搜寻
+  - 伪目标
+  - 多目标
+  - 静态模式
+  - 自动生成依赖性
+- 书写命令
+  - 显示命令
+  - 命令执行
+  - 命令出错
+  - 嵌套执行make
+  - 定义命令包
+- 使用变量
+  - 变量的基础
+  - 变量中的变量
+  - 变量高级用法
+  - 追加变量值
+  - override 指示符
+  - 多行变量
+  - 环境变量
+  - 目标变量
+  - 模式变量
+- 使用条件判断
+  - 示例
+  - 语法
+- 使用函数
+  - 函数的调用语法
+  - 字符串处理函数
+    - subst
+    - patsubst
+    - strip
+    - findstring
+    - filter
+    - filter-out
+    - sort
+    - word
+    - wordlist
+    - words
+    - firstword
+  - 文件名操作函数
+    - dir
+    - notdir
+    - suffix
+    - basename
+    - addsuffix
+    - addprefix
+    - join
+  - foreach 函数
+  - if 函数
+  - call函数
+  - origin函数
+  - shell函数
+  - 控制make的函数
+- make 的运行
+  - make的退出码
+  - 指定Makefile
+  - 指定目标
+  - 检查规则
+  - make的参数
+- 隐含规则
+  - 使用隐含规则
+  - 隐含规则一览
+  - 隐含规则使用的变量
+    - 关于命令的变量。
+    - 关于命令参数的变量
+  - 隐含规则链
+  - 定义模式规则
+    - 模式规则介绍
+    - 模式规则示例
+    - 自动化变量
+    - 模式的匹配
+    - 重载内建隐含规则
+  - 老式风格的“后缀规则”
+  - 隐含规则搜索算法
+- 使用make更新函数库文件
+  - 函数库文件的成员
+  - 函数库成员的隐含规则
+  - 函数库文件的后缀规则
+  - 注意事项
+- 后序 -->

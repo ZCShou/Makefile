@@ -1,4 +1,4 @@
-![logo](!Images/logo.png)
+![logo](!assets/logo.png)
 
 # 跟我一起写 Makefile
 
