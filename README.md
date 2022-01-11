@@ -9,6 +9,8 @@
 
 网页在线版： https://zcshou.github.io/Makefile/
 
+在整理额时候，发现已经有网友做个这个工作了：https://github.com/seisman/how-to-write-makefile
+
 # 关于本文档
 1. 本文档系统使用开源文档网站生成器 **[docsify](https://docsify.js.org/#/)** 搭建，文档格式均为 Markdown 格式。
 2. 文档中的图例使用开源软件 **[draw.io](https://www.diagrams.net/)** 绘制，并导出为 .PNG。所有图示的源码可以在这里下载（可使用 draw.io 打开即可）。
