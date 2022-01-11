@@ -12,10 +12,10 @@
 ## 规则
 在讲述这个 Makefile 之前，还是让我们先来粗略地看一看 Makefile 的规则。
 ```makefile
-    target ... : prerequisites ...
-        command
-        ...
-        ...
+target ... : prerequisites ...
+	command
+	...
+	...
 ```
 - **target**： 可以是一个 object file（目标文件），也可以是一个执行文件，还可以是一个标签（label）。对于标签这种特性，在后续的“伪目标”章节中会有叙述。
 - **prerequisites**： 生成该 target 所依赖的文件和 / 或 target
@@ -29,31 +29,32 @@
 &emsp;&emsp;正如前面所说，如果一个工程有 3 个头文件和 8 个 c 文件，为了完成前面所述的那三个规则，我们的 Makefile 应该是下面的这个样子的。
 ```makefile
 edit : main.o kbd.o command.o display.o \
-        insert.o search.o files.o utils.o
-    cc -o edit main.o kbd.o command.o display.o \
-        insert.o search.o files.o utils.o
+		insert.o search.o files.o utils.o
+	cc -o edit main.o kbd.o command.o display.o \
+		insert.o search.o files.o utils.o
 
 main.o : main.c defs.h
-    cc -c main.c
+	cc -c main.c
 kbd.o : kbd.c defs.h command.h
-    cc -c kbd.c
+	cc -c kbd.c
 command.o : command.c defs.h command.h
-    cc -c command.c
+	cc -c command.c
 display.o : display.c defs.h buffer.h
-    cc -c display.c
+	cc -c display.c
 insert.o : insert.c defs.h buffer.h
-    cc -c insert.c
+	cc -c insert.c
 search.o : search.c defs.h buffer.h
-    cc -c search.c
+	cc -c search.c
 files.o : files.c defs.h buffer.h command.h
-    cc -c files.c
+	cc -c files.c
 utils.o : utils.c defs.h
-    cc -c utils.c
+	cc -c utils.c
 clean :
-    rm edit main.o kbd.o command.o display.o \
-        insert.o search.o files.o utils.o
+	rm edit main.o kbd.o command.o display.o \
+		insert.o search.o files.o utils.o
 ```
 &emsp;&emsp;反斜杠（ `\` ）是换行符的意思。这样比较便于 Makefile 的阅读。我们可以把这个内容保存在名字为 “makefile” 或 “Makefile” 的文件中，然后在该目录下直接输入命令 `make` 就可以生成执行文件 edit。如果要删除执行文件和所有的中间目标文件，那么，只要简单地执行一下 `make clean` 就可以了。
+![exp1](./images/exp1.jpg)
 
 在这个makefile中，目标文件（target）包含：执行文件edit和中间目标文件（ ``*.o`` ），依赖文
 件（prerequisites）就是冒号后面的那些 ``.c`` 文件和 ``.h`` 文件。每一个 ``.o`` 文件都有
