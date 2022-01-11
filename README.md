@@ -1,0 +1,108 @@
+# 跟我一起写 Makefile
+&emsp;&emsp;最近,本人在使用 U-Boot 时，需要查看及更改 U-Boot 的 Makefile，由于对于 Makefile 不是很了解，于是在网上找到了《跟我一起写Makefile》。《跟我一起写Makefile》是[陈皓](https://coolshell.cn/haoel)发表在其 [CSDN 博客](https://blog.csdn.net/haoel/article/details/2886)上的系列文章。为了必变眼高手低，现通过将其整理到 Github 的方式来学习一下。
+
+&emsp;&emsp;该系列文章翻译整理自 [GNU Make Manual](https://www.gnu.org/software/make/manual/)，英文比较好的也可以直接去看这个官方手册。
+
+# 目录
+- 概述
+  - 关于程序的编译和链接
+- makefile介绍
+  - makefile的规则
+  - 一个示例
+  - make是如何工作的
+  - makefile中使用变量
+  - 让make自动推导
+  - 另类风格的makefiles
+  - 清空目标文件的规则
+  - Makefile里有什么？
+  - Makefile的文件名
+  - 引用其它的Makefile
+  - 环境变量MAKEFILES
+  - make的工作方式
+- 书写规则
+  - 规则举例
+  - 规则的语法
+  - 在规则中使用通配符
+  - 文件搜寻
+  - 伪目标
+  - 多目标
+  - 静态模式
+  - 自动生成依赖性
+- 书写命令
+  - 显示命令
+  - 命令执行
+  - 命令出错
+  - 嵌套执行make
+  - 定义命令包
+- 使用变量
+  - 变量的基础
+  - 变量中的变量
+  - 变量高级用法
+  - 追加变量值
+  - override 指示符
+  - 多行变量
+  - 环境变量
+  - 目标变量
+  - 模式变量
+- 使用条件判断
+  - 示例
+  - 语法
+- 使用函数
+  - 函数的调用语法
+  - 字符串处理函数
+    - subst
+    - patsubst
+    - strip
+    - findstring
+    - filter
+    - filter-out
+    - sort
+    - word
+    - wordlist
+    - words
+    - firstword
+  - 文件名操作函数
+    - dir
+    - notdir
+    - suffix
+    - basename
+    - addsuffix
+    - addprefix
+    - join
+  - foreach 函数
+  - if 函数
+  - call函数
+  - origin函数
+  - shell函数
+  - 控制make的函数
+- make 的运行
+  - make的退出码
+  - 指定Makefile
+  - 指定目标
+  - 检查规则
+  - make的参数
+- 隐含规则
+  - 使用隐含规则
+  - 隐含规则一览
+  - 隐含规则使用的变量
+    - 关于命令的变量。
+    - 关于命令参数的变量
+  - 隐含规则链
+  - 定义模式规则
+    - 模式规则介绍
+    - 模式规则示例
+    - 自动化变量
+    - 模式的匹配
+    - 重载内建隐含规则
+  - 老式风格的“后缀规则”
+  - 隐含规则搜索算法
+- 使用make更新函数库文件
+  - 函数库文件的成员
+  - 函数库成员的隐含规则
+  - 函数库文件的后缀规则
+  - 注意事项
+- 后序
+
+# 关于本文档
+1. 本文档系统使用开源文档网站生成器 **[docsify](https://docsify.js.org/#/)** 搭建
+2. 文档中的图例使用开源软件 **[draw.io](https://www.diagrams.net/)** 绘制
