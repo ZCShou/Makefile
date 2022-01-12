@@ -9,10 +9,11 @@
 # OBJCOPY		= objcopy
 # OBJDUMP		= objdump
 
-edit: main.o kbd.o command.o display.o \
-		insert.o search.o files.o utils.o
-	cc -o edit main.o kbd.o command.o display.o \
-		insert.o search.o files.o utils.o
+objects = main.o kbd.o command.o display.o \
+	insert.o search.o files.o utils.o
+
+edit: $(objects)
+	cc -o edit $(objects)
 
 main.o: main.c defs.h
 	cc -c main.c
@@ -31,5 +32,4 @@ files.o: files.c defs.h buffer.h command.h
 utils.o: utils.c defs.h
 	cc -c utils.c
 clean:
-	rm edit main.o kbd.o command.o display.o \
-		insert.o search.o files.o utils.o
+	rm edit $(objects)

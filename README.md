@@ -1,5 +1,5 @@
 # 跟我一起写 Makefile
-&emsp;&emsp;最近,本人在使用 U-Boot 时，需要查看及更改 U-Boot 的 Makefile，由于对于 Makefile 不是很了解，于是在网上找到了《跟我一起写Makefile》。《跟我一起写Makefile》是[陈皓](https://coolshell.cn/haoel)发表在其 [CSDN 博客](https://blog.csdn.net/haoel/article/details/2886)上的系列文章。为了避免眼高手低，现通过将其整理到 Github 的方式来学习一下。
+&emsp;&emsp;最近，本人在使用 U-Boot 时，需要查看及更改 U-Boot 的 Makefile，由于对于 Makefile 不是很了解，于是在网上找到了《跟我一起写Makefile》。《跟我一起写Makefile》是 [陈皓](https://coolshell.cn/haoel) 发表在其 [CSDN 博客](https://blog.csdn.net/haoel/article/details/2886)上的系列文章。为了避免眼高手低，现通过将其整理到 Github 的方式来学习一下。
 
 &emsp;&emsp;作者的原文中没有代码高亮，排版也不是很规则，文中的示例也没有提供代码，为了加深学习印象，我会提供完整的示例代码，并在原文中会添加了一些内容、图示等等，因此，本文与作者的原文稍有差异，但主体内容没有变化！我这里主要的更改有：
 1. 增加示例代码，用于验证文中的示例。我使用的环境是 Ubuntu 20.04.3
@@ -7,7 +7,7 @@
 3. 全文均为 Markdown 格式，方便大家查看及修改
 4. 调整了文章的排版
 
-&emsp;&emsp;在整理额时候，发现已经有网友做个这个工作了：https://github.com/seisman/how-to-write-makefile ，但是他这个使用的是 reStructuredText（扩展名 .rst）格式的文件，不是目前流行的 Markdown 格式。而且它俩的语法差的也比较多，我这里再整理一个 Markdown 格式的！
+&emsp;&emsp;在整理额时候，发现已经有网友做个这个工作了：https://github.com/seisman/how-to-write-makefile ，但是他这个使用的是 reStructuredText（扩展名 .rst）格式的文件，不是目前流行的 Markdown 格式（扩展名 .md）。而且这两种格式的语法差的也比较多，我这里再整理一个 Markdown 格式的！
 
 # 相关内容
 1. 项目主页： https://github.com/ZCShou/Makefile
