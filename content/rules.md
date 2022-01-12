@@ -236,7 +236,7 @@ main.o : main.c defs.h
 main.o : main.c defs.h
 ```
 &emsp;&emsp;于是由编译器自动生成的依赖关系，这样一来，你就不必再手动书写若干文件的依赖关系，而由编译器自动生成了。需要提醒一句的是，如果你使用 GNU 的 C/C++ 编译器，你得用 `-MM` 参数，不然， `-M`参数会把一些标准库的头文件也包含进来。`gcc -M main.c` 的输出是:
-```bash
+```log
  main.o: main.c defs.h /usr/include/stdio.h /usr/include/features.h \
      /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
      /usr/lib/gcc-lib/i486-suse-linux/2.95.3/include/stddef.h \
@@ -248,7 +248,7 @@ main.o : main.c defs.h
      /usr/include/bits/stdio_lim.h
 ```
 `gcc -MM main.c` 的输出则是:
-```bash
+```log
 main.o: main.c defs.h
 ```
 &emsp;&emsp;那么，编译器的这个功能如何与我们的 Makefile 联系在一起呢。因为这样一来，我们的 Makefile 也要根据这些源文件重新生成，让 Makefile 自已依赖于源文件？这个功能并不现实，不过我们可以有其它手段来迂回地实现这一功能。GNU 组织建议把编译器为每一个源文件的自动生成的依赖关系放到一个文件中，为每一个 `name.c` 的文件都生成一个 `name.d` 的 Makefile 文件， `.d` 文件中就存放对应 `.c` 文件的依赖关系。

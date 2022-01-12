@@ -43,7 +43,7 @@
             // 代码复制插件 docsify-copy-code 的配置
             copyCode: {
                 buttonText: '点击复制',
-                errorText: '出错',
+                errorText: '复制出错',
                 successText: '已复制'
             },
             // 分页导航插件 docsify-pagination 的配置
@@ -69,14 +69,8 @@
                     label: "错误"
                 }
             },
-            tabs: {
-                persist    : true,      // default
-                sync       : true,      // default
-                theme      : 'classic', // default
-                tabComments: true,      // default
-                tabHeadings: true       // default
-            }
         }
+
         //自用接口
         function ShowEventContent(name,index,num) {
             for (i=1; i<num+1; i++) {
@@ -95,17 +89,13 @@
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify-copy-code@2"></script> <!-- 代码复制插件 -->
-    <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script><!-- 分页导航插件，由 @imyelo 提供 -->
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-log.min.js"></script><!-- 代码高亮（区分不用编程语言） -->
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-makefile.min.js"></script>
+    <!-- <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script> -->
+    <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>   <!-- https://github.com/imyelo/docsify-pagination -->
     <script src="//unpkg.com/docsify-plugin-flexible-alerts@1.1.0/dist/docsify-plugin-flexible-alerts.min.js"></script>
-    <!-- 代码高亮（区分不用编程语言） -->
-    <script src="//cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-bash.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-c.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
-    <!-- PDFObject.js is a required dependency of this plugin -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>
-    <!-- or use this if you are not hosting the file yourself -->
-    <script src="//unpkg.com/docsify-pdf-embed-plugin/src/docsify-pdf-embed.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/class-change@1"></script>
+    <script src="//unpkg.com/docsify-plugin-flexible-alerts"></script><!-- https://github.com/fzankl/docsify-plugin-flexible-alerts -->
+    <script src="//unpkg.com/docsify-copy-code@2"></script><!-- https://github.com/jperasmus/docsify-copy-code -->
 </body>
 
 </html>
