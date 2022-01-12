@@ -1,8 +1,8 @@
-- [目录](content/topic.md)
-
 - [概述](content/summary.md)
 
 - [Makefile 介绍](content/introduction.md)
+
+- [书写规则](content/rules.md)
 
 
 <!-- # 目录
