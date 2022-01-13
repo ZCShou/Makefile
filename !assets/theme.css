@@ -602,8 +602,12 @@ pre[data-lang]::selection,pre[data-lang] ::selection,code[class*="lang-"]::selec
     margin: 1em 0
 }
 
-.markdown-section ol,.markdown-section ul {
-    padding-left: 2rem
+.markdown-section ul {
+    padding-left: 1.5rem
+}
+
+.markdown-section ol {
+    padding-left: 3rem
 }
 
 .markdown-section ol ol,.markdown-section ol ul,.markdown-section ul ol,.markdown-section ul ul {

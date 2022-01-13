@@ -7,7 +7,7 @@
 3. 全文均为 Markdown 格式，方便大家查看及修改
 4. 调整了文章的排版
 
-&emsp;&emsp;在整理额时候，发现已经有网友做个这个工作了：https://github.com/seisman/how-to-write-makefile ，但是他这个使用的是 reStructuredText（扩展名 .rst）格式的文件，不是目前流行的 Markdown 格式（扩展名 .md）。而且这两种格式的语法差的也比较多，我这里再整理一个 Markdown 格式的！
+&emsp;&emsp;在整理的时候，发现已经有网友做个这个工作了：https://github.com/seisman/how-to-write-makefile ，但是他这个使用的是 reStructuredText（扩展名 .rst）格式的文件，不是目前流行的 Markdown 格式（扩展名 .md）。而且这两种格式的语法差的也比较多，我这里再整理一个 Markdown 格式的！
 
 # 相关内容
 1. 项目主页： https://github.com/ZCShou/Makefile

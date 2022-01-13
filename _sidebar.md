@@ -4,6 +4,8 @@
 
 - [书写规则](content/rules.md)
 
+- [书写命令](content/recipes.md)
+
 
 <!-- # 目录
 - 概述
