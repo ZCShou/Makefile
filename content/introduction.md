@@ -18,7 +18,7 @@ target ... : prerequisites ...
 ```
 - **target**： 可以是一个 object file（目标文件），也可以是一个执行文件，还可以是一个标签（label）。对于标签这种特性，在后续的“伪目标”章节中会有叙述。
 - **prerequisites**： 生成该 target 所依赖的文件和 / 或 target
-- **command**： 该 target 要执行的命令（任意的 shell 命令）。**注意这里的命令必须以 `Tab` 键开头！**
+- **command**： 该 target 要执行的命令（任意的 shell 命令）。
 
 &emsp;&emsp;这是一个文件的依赖关系，也就是说，target 这一个或多个的目标文件依赖于 prerequisites 中的文件，其生成规则定义在 command 中。说白一点就是说：prerequisites 中如果有一个以上的文件比 target 文件要新的话，command 所定义的命令就会被执行。这就是 Makefile 的规则，也就是 Makefile 中最核心的内容。
 
