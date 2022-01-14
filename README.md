@@ -15,7 +15,7 @@
 &emsp;&emsp;在整理的时候，发现已经有网友做个这个工作了：https://github.com/seisman/how-to-write-makefile ，但是他这个使用的是 reStructuredText（扩展名 .rst）格式的文件，不是目前流行的 Markdown 格式（扩展名 .md）。而且这两种格式的语法差的也比较多，我这里再整理一个 Markdown 格式的！
 
 # 相关内容
-1. 前辈 [陈皓](https://coolshell.cn/haoel) 的 CSDN 博客地址：https://blog.csdn.net/haoel/article/details/2886 。本文中的内容版权归 [陈皓](https://coolshell.cn/haoel) 所有，作者要求转载注明作者及出处。我在整理时添加了一些图示及一些注释说明，均以 Markdown 引用形式添加，方便大家在不需要时随意删除！
+1. 前辈 [陈皓](https://coolshell.cn/haoel) 的 CSDN 博客地址：https://blog.csdn.net/haoel/article/details/2886 。本文中的内容版权归 [陈皓](https://coolshell.cn/haoel) 所有，作者要求转载注明作者及出处。我在整理时添加了一些图示及一些注释说明，均以 Markdown 引用（>）形式添加，方便大家在不需要时随意删除！
 
 2. 项目主页： https://github.com/ZCShou/Makefile
 

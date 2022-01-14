@@ -1,10 +1,12 @@
 # Makefile 介绍
 `make` 命令执行时，需要一个 Makefile 文件，以告诉 `make` 命令需要怎么样的去编译和链接程序。
 
-&emsp;&emsp;首先，我们用一个示例来说明 Makefile 的书写规则，以便给大家一个感性认识。这个示例来源于 GNU 的 `make` 使用手册，在这个示例中，我们的工程有 8 个 c 文件，和 3 个头文件，我们要写一个 Makefile 来告诉 `make` 命令如何编译和链接这几个文件（完整 demo 见 examples/exp1）。我们的规则是：
+&emsp;&emsp;首先，我们用一个示例来说明 Makefile 的书写规则，以便给大家一个感性认识。这个示例来源于 GNU 的 `make` 使用手册，在这个示例中，我们的工程有 8 个 c 文件，和 3 个头文件，我们要写一个 Makefile 来告诉 `make` 命令如何编译和链接这几个文件。我们的规则是：
 1. 如果这个工程没有编译过，那么我们的所有 c 文件都要编译并被链接。
 2. 如果这个工程的某几个 c 文件被修改，那么我们只编译被修改的 c 文件，并链接目标程序。
 3. 如果这个工程的头文件被改变了，那么我们需要编译引用了这几个头文件的 c 文件，并链接目标程序。
+
+> 完整 demo 见 examples/exp1
 
 &emsp;&emsp;只要我们的 Makefile 写得够好，所有的这一切，我们只用一个 `make` 命令就可以完成，`make`命令会自动智能地根据当前的文件修改的情况来确定哪些文件需要重编译，从而自动编译所需要的文件和链接目标程序。
 
@@ -25,7 +27,7 @@ target ... : prerequisites ...
 &emsp;&emsp;说到底，Makefile 的东西就是这样一点，好像我的这篇文档也该结束了。呵呵。还不尽然，这是 Makefile 的主线和核心，但要写好一个 Makefile 还不够，我会在后面一点一点地结合我的工作经验给你慢慢道来。内容还多着呢。:)
 
 ## 一个示例
-&emsp;&emsp;正如前面所说，如果一个工程有 3 个头文件和 8 个 c 文件（该示例源码见 `examples/exp1`），为了完成前面所述的那三个规则，我们的 Makefile 应该是下面的这个样子的。
+&emsp;&emsp;正如前面所说，如果一个工程有 3 个头文件和 8 个 c 文件，为了完成前面所述的那三个规则，我们的 Makefile 应该是下面的这个样子的。
 ```makefile
 edit: main.o kbd.o command.o display.o \
 		insert.o search.o files.o utils.o
@@ -53,7 +55,8 @@ clean:
 		insert.o search.o files.o utils.o
 ```
 &emsp;&emsp;反斜杠（ `\` ）是换行符的意思。这样比较便于 Makefile 的阅读。我们可以把这个内容保存在名字为 “makefile” 或 “Makefile” 的文件中，然后在该目录下直接输入命令 `make` 就可以生成执行文件 edit。如果要删除执行文件和所有的中间目标文件，那么，只要简单地执行一下 `make clean` 就可以了。
-![exp1](./images/exp1.jpg)
+
+> ![exp1](./images/exp1.jpg)
 
 &emsp;&emsp;在这个 Makefile 中，目标文件（target）包含：执行文件 edit 和中间目标文件（ `*.o` ），依赖文件（prerequisites）就是冒号后面的那些 `.c` 文件和 `.h` 文件。每一个 `.o` 文件都有一组依赖文件，而这些 `.o` 文件又是执行文件 `edit` 的依赖文件。依赖关系的实质就是说明了目标文件是由哪些文件生成的，换言之，目标文件是哪些文件更新的。
 
