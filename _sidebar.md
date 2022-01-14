@@ -12,6 +12,12 @@
 
 - [make 的运行](content/invoke.md)
 
+- [隐含规则](content/implicit_rules.md)
+
+- [使用 make 更新函数库文件](content/archives.md)
+
+- [后序](content/postscript.md)
+
 <!-- # 目录
 - 概述
   - 关于程序的编译和链接
