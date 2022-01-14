@@ -20,6 +20,8 @@
 
 - [后序](content/postscript.md)
 
+- [规则匹配机制](content/rules_match.md)
+
 <!-- # 目录
 - 概述
   - 关于程序的编译和链接
