@@ -1,6 +1,10 @@
-- [概述](content/summary.md)
+- [概述](content/overview.md)
+
+- [make 的运行](content/make.md)
 
 - [Makefile 介绍](content/introduction.md)
+
+- [Makefile 综述](content/summary.md)
 
 - [书写规则](content/rules.md)
 
@@ -9,8 +13,6 @@
 - [使用变量](content/variables.md)
 
 - [使用函数](content/functions.md)
-
-- [make 的运行](content/invoke.md)
 
 - [隐含规则](content/implicit_rules.md)
 

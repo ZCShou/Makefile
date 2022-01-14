@@ -1,22 +1,42 @@
-# 概述
-&emsp;&emsp;什么是 Makefile？或许很多 Windows 的程序员都不知道这个东西，因为那些 Windows 的集成开发环境（integrated development environment，IDE）都为你做了这个工作，但我觉得要作一个好的和专业的程序员，Makefile 还是要懂。这就好像现在有这么多的 HTML 编辑器，但如果你想成为一个专业人士，你还是要了解 HTML 的标签的含义。特别在 Unix 下的软件编译，你就不能不自己写 Makefile 了，会不会写 Makefile，从一个侧面说明了一个人是否具备完成大型工程的能力。
 
-&emsp;&emsp;因为，Makefile 关系到了整个工程的编译规则。一个工程中的源文件不计其数，并且按类型、功能、模块分别放在若干个目录中，Makefile 定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 Makefile 就像一个 Shell 脚本一样，其中也可以执行操作系统的命令。
+# Makefile 综述
+## Makefile 里有什么？
 
-&emsp;&emsp;Makefile 带来的好处就是——“自动化编译”，一旦写好，只需要一个 `make` 命令，整个工程完全自动编译，极大的提高了软件开发的效率。 `make` 是一个命令工具，是一个解释Makefile 中指令的命令工具，一般来说，大多数的 IDE 都有这个命令，比如：Delphi 的 make，Visual C++ 的 nmake，Linux 下 GNU 的 make。可见，Makefile 都成为了一种在工程方面的编译方法。
+Makefile 里主要包含了五个东西：显式规则、隐晦规则、变量定义、文件指示和注释。
+1. 显式规则。显式规则说明了如何生成一个或多个目标文件。这是由 Makefile 的书写者明显指出要生成的文件、文件的依赖文件和生成的命令。
+2. 隐晦规则。由于我们的 `make` 有自动推导的功能，所以隐晦的规则可以让我们比较简略地书写 Makefile，这是由 `make` 所支持的。
+3. 变量的定义。在 Makefile 中我们要定义一系列的变量，变量一般都是字符串，这个有点像你 C 语言中的宏，当 Makefile 被执行时，其中的变量都会被扩展到相应的引用位置上。
+4. 文件指示。其包括了三个部分，一个是在一个 Makefile 中引用另一个 Makefile，就像 C 语言中的 include 一样；另一个是指根据某些情况指定 Makefile 中的有效部分，就像 C 语言中的预编译 #if 一样；还有就是定义一个多行的命令。有关这一部分的内容，我会在后续的部分中讲述。
+5. 注释。Makefile 中只有行注释，和 UNIX 的 Shell 脚本一样，其注释是用 `#` 字符，这个就像 C/C++ 中的 `//` 一样。如果你要在你的 Makefile 中使用 `#` 字符，可以用反斜杠进行转义，如： `\#`。
 
-&emsp;&emsp;现在讲述如何写 Makefile 的文章比较少，这是我想写这篇文章的原因。当然，不同产商的 `make` 各不相同，也有不同的语法，但其本质都是在 “文件依赖性”上做文章，这里，我仅对GNU 的 make 进行讲述，我的环境是 RedHat Linux 8.0，`make` 的版本是 3.80。毕竟，这个 make 是应用最为广泛的，也是用得最多的。而且其还是最遵循于 IEEE 1003.2-1992 标准的（POSIX.2）。
+最后，还值得一提的是，在 Makefile 中的命令，必须要以 `Tab` 键开始。
 
-&emsp;&emsp;在这篇文档中，将以 C/C++ 的源码作为基础，所以必然涉及一些关于 C/C++ 的编译的知识。关于这方面的内容，还请各位查看相关的编译器的文档。这里所默认的编译器是 UNIX 下的GCC 和 CC。
+## Makefile 的文件名
+&emsp;&emsp;默认的情况下，`make` 命令会在当前目录下按顺序找寻文件名为 “GNUmakefile”、“makefile”、“Makefile” 的文件，找到了解释这个文件。在这三个文件名中，最好使用 “Makefile” 这个文件名，因为，这个文件名第一个字符为大写，这样有一种显目的感觉。最好不要用 “GNUmakefile”，这个文件是 GNU 的 `make` 识别的。有另外一些 `make` 只对全小写的 “makefile” 文件名敏感，但是基本上来说，大多数的 `make` 都支持 “makefile” 和 “Makefile” 这两种默认文件名。
 
-## 关于程序的编译和链接
-&emsp;&emsp;在此，我想多说关于程序编译的一些规范和方法。一般来说，无论是 C 还是 C++，首先要把源文件编译成中间代码文件，在 Windows 下也就是 .obj 文件，UNIX 下是 .o 文件，即 Object File，这个动作叫做编译（compile）。然后再把大量的 Object File 合成执行文件，这个动作叫作链接（link）。
-![编译及链接](./images/compile.gif)
+&emsp;&emsp;当然，你可以使用别的文件名来书写 Makefile，比如：“Make.Linux”，“Make.Solaris”，“Make.AIX”等，如果要指定特定的 Makefile，你可以使用 `make` 的 `-f` 和 `--file` 参数，如： `make -f Make.Linux` 或 `make --file Make.AIX`。
 
-&emsp;&emsp;编译时，编译器需要的是语法的正确，函数与变量的声明的正确。对于后者，通常是你需要告诉编译器头文件的所在位置（头文件中应该只是声明，而定义应该放在 C/C++ 文件中），只要所有的语法正确，编译器就可以编译出中间目标文件。一般来说，每个源文件都应该对应于一个中间目标文件（ .o 文件或 .obj 文件）。
+## 引用其它的 Makefile
+&emsp;&emsp;在 Makefile 使用 `include` 关键字可以把别的 Makefile 包含进来，这很像 C 语言的 `#include` ，被包含的文件会原模原样的放在当前文件的包含位置。 `include` 的语法是：
+```makefile
+include <filename>
+```
+`filename` 可以是当前操作系统 Shell 的文件模式（可以包含路径和通配符）。
 
-&emsp;&emsp;链接时，主要是链接函数和全局变量。所以，我们可以使用这些中间目标文件（ .o 文件或 .obj 文件）来链接我们的应用程序。链接器并不管函数所在的源文件，只管函数的中间目标文件（Object File），在大多数时候，由于源文件太多，编译生成的中间目标文件太多，而在链接时需要明显地指出中间目标文件名，这对于编译很不方便。所以，我们要给中间目标文件打个包，在Windows 下这种包叫“库文件”（Library File），也就是 .lib 文件，在 UNIX 下，是 Archive File，也就是 .a 文件。
+&emsp;&emsp;在 `include` 前面可以有一些空字符，但是绝不能是 `Tab` 键开始。 `include` 和 `<filename>` 可以用一个或多个空格隔开。举个例子，你有这样几个 Makefile： `a.mk` 、`b.mk` 、 `c.mk` ，还有一个文件叫 `foo.make` ，以及一个变量 `$(bar)` ，其包含了 `e.mk` 和 `f.mk` ，那么，下面的语句：
+```makefile
+include foo.make *.mk $(bar)
+```
+等价于：
+```makefile
+include foo.make a.mk b.mk c.mk e.mk f.mk
+```
+&emsp;&emsp;`make` 命令开始时，会找寻 `include` 所指出的其它 Makefile，并把其内容安置在当前的位置。就好像 C/C++ 的 `#include` 指令一样。如果文件都没有指定绝对路径或是相对路径的话，`make` 会在当前目录下首先寻找，如果当前目录下没有找到，那么，`make` 还会在下面的几个目录下找：
+1. 如果make执行时，有 `-I` 或 `--include-dir` 参数，那么make就会在这个参数所指定的目录下去寻找。
+2. 如果目录 `<prefix>/include` （一般是：`/usr/local/bin` 或 `/usr/include`）存在的话，`make` 也会去找。
 
-&emsp;&emsp;总结一下，源文件首先会生成中间目标文件，再由中间目标文件生成执行文件。在编译时，编译器只检测程序语法和函数、变量是否被声明。如果函数未被声明，编译器会给出一个警告，但可以生成 Object File。而在链接程序时，链接器会在所有的Object File 中找寻函数的实现，如果找不到，那到就会报链接错误码（Linker Error），在 VC 下，这种错误一般是： Link 2001 错误 ，意思说是说，链接器未能找到函数的实现。你需要指定函数的 Object File。
-
-好，言归正传，gnu 的 `make` 有许多的内容，闲言少叙。
+&emsp;&emsp;如果有文件没有找到的话，`make` 会生成一条警告信息，但不会马上出现致命错误。它会继续载入其它的文件，一旦完成 Makefile 的读取，`make` 会再重试这些没有找到，或是不能读取的文件，如果还是不行，`make` 才会出现一条致命信息。如果你想让 `make` 不理那些无法读取的文件，而继续执行，你可以在 include 前加一个减号 “-”。如：
+```makefile
+-include <filename>
+```
+其表示，无论 include 过程中出现什么错误，都不要报错继续执行。和其它版本 `make` 兼容的相关命令是 `sinclude`，其作用和这一个是一样的。
