@@ -6,6 +6,11 @@
 
 - [书写命令](content/recipes.md)
 
+- [使用变量](content/variables.md)
+
+- [使用函数](content/functions.md)
+
+- [make 的运行](content/invoke.md)
 
 <!-- # 目录
 - 概述
