@@ -26,6 +26,44 @@ GNU 的 make 工作时的执行步骤如下：（想来其它的 `make` 也是�
 
 Make 的相关参数我们会在后续章节中讲述。
 
+## make 的参数
+&emsp;&emsp;下面列举了所有 GNU make 3.80 版的参数定义（新版本（我这里的 4.2.1）的参数也基本是这些）。其它版本和产商的 `make` 大同小异，不过其它产商的 `make` 的具体参数还是请参考各自的产品文档。
+
+![make-h](./images/make_h.jpg)
+- `-b`, `-m`： 这两个参数的作用是忽略和其它版本 `make` 的兼容性。
+- `-B`, `--always-make`： 认为所有的目标都需要更新（重编译）。
+- `-C <dir>`, `--directory=<dir>`： 指定读取 Makefile 的目录。如果有多个 “-C” 参数，`make` 的解释是后面的路径以前面的作为相对路径，并以最后的目录作为被指定目录。如：`make -C ~hchen/test -C prog` 等价于 `make -C ~hchen/test/prog`。
+- `-debug[=<options>]`： 输出 make 的调试信息。它有几种不同的级别可供选择，如果没有参数，那就是输出最简单的调试信息。下面是 `<options>` 的取值：
+    - a: 也就是 all，输出所有的调试信息。（会非常的多）
+    - b: 也就是 basic，只输出简单的调试信息。即输出不需要重编译的目标。
+    - v: 也就是 verbose，在b选项的级别之上。输出的信息包括哪个makefile被解析，不需要被重编译的依赖文件（或是依赖目标）等。
+    - i: 也就是 implicit，输出所以的隐含规则。
+    - j: 也就是 jobs，输出执行规则中命令的详细信息，如命令的PID、返回码等。
+    - m: 也就是 makefile，输出 make 读取 makefile，更新 makefile，执行 makefile 的信息。
+- `-d`： 相当于“--debug=a”。
+- `-e`, `--environment-overrides`： 指明环境变量的值覆盖 makefile 中定义的变量的值。
+- `-f <file>`, `--file=<file>`, `--makefile=<file>`： 指定需要执行的makefile。
+- `-h`, `--help`： 显示帮助信息。
+- `-i` , `--ignore-errors`： 在执行时忽略所有的错误。
+- `-I <dir>`, `--include-dir=<dir>`： 指定一个被包含 makefile 的搜索目标。可以使用多个 “-I” 参数来指定多个目录。
+- `-j [<jobsnum>]`, `--jobs[=<jobsnum>]`： 指同时运行命令的个数。如果没有这个参数，make 运行命令时能运行多少就运行多少。如果有一个以上的 “-j” 参数，那么仅最后一个 “-j” 才是有效的。（注意这个参数在 MS-DOS 中是无用的）
+- `-k`, `--keep-going`： 出错也不停止运行。如果生成一个目标失败了，那么依赖于其上的目标就不会被执行了。
+- `-l <load>`, `--load-average[=<load>]`, `-max-load[=<load>]`： 指定make运行命令的负载。
+- `-n`, `--just-print`, `--dry-run`, `--recon`： 仅输出执行过程中的命令序列，但并不执行。
+- `-o <file>`, `--old-file=<file>`, `--assume-old=<file>`： 不重新生成的指定的 `<file>`，即使这个目标的依赖文件新于它。
+- `-p`, `--print-data-base`: 输出 makefile 中的所有数据，包括所有的规则和变量。这个参数会让一个简单的 makefile 都会输出一堆信息。如果你只是想输出信息而不想执行 makefile，你可以使用 “make -qp” 命令。如果你想查看执行 makefile 前的预设变量和规则，你可以使用 “make –p –f /dev/null”。这个参数输出的信息会包含着你的makefile文件的文件名和行号，所以，用这个参数来调试你的 makefile 会是很有用的，特别是当你的环境变量很复杂的时候。
+- `-q`, `--question`: 不运行命令，也不输出。仅仅是检查所指定的目标是否需要更新。如果是 0 则说明要更新，如果是 2 则说明有错误发生。
+- `-r`, `--no-builtin-rules`： 禁止make使用任何隐含规则。
+- `-R`, `--no-builtin-variabes`： 禁止make使用任何作用于变量上的隐含规则。
+- `-s`, `--silent`, `--quiet`： 在命令运行时不输出命令的输出。
+- `-S`, `--no-keep-going`, `--stop`： 取消“-k”选项的作用。因为有些时候，make的选项是从环境变量“MAKEFLAGS”中继承下来的。所以你可以在命令行中使用这个参数来让环境变量中的“-k”选项失效。
+- `-t`, `--touch`： 相当于 UNIX 的 touch 命令，只是把目标的修改日期变成最新的，也就是阻止生成目标的命令运行。
+- `-v`, `--version`： 输出 make 程序的版本、版权等关于 make 的信息。
+- `-w`, `--print-directory`： 输出运行makefile之前和之后的信息。这个参数对于跟踪嵌套式调用make时很有用。
+- `--no-print-directory`： 禁止 “-w” 选项。
+- `-W <file>`, `--what-if=<file>`, `--new-file=<file>`, `--assume-file=<file>`： 假定目标 `<file>` 需要更新，如果和 “-n” 选项使用，那么这个参数会输出该目标更新时的运行动作。如果没有“-n”那么就像运行 UNIX 的 “touch” 命令一样，使得 `<file>` 的修改时间为当前时间。
+- `--warn-undefined-variables`： 只要make发现有未定义的变量，那么就输出警告信息。
+
 ## 指定 Makefile
 &emsp;&emsp;前面我们说过，GNU make 找寻默认的 Makefile 的规则是在当前目录下依次找三个文件 —— “GNUmakefile”、“makefile” 和 “Makefile”。其按顺序找这三个文件，一旦找到，就开始读取这个文件并执行。
 
@@ -34,6 +72,15 @@ Make 的相关参数我们会在后续章节中讲述。
 make –f hchen.mk
 ```
 如果在 `make` 的命令行中你不只一次地使用了 `-f` 参数，那么，所有指定的 Makefile 将会被连在一起传递给 `make` 执行。
+
+## 解析 Makefile
+`make` 采用逐行解析的方式来解析整个 Makefile。解析步骤如下：
+1. 读取完整的逻辑行，包括反斜杠转义的行
+2. 移除注释
+3. If the line begins with the recipe prefix character and we are in a rule context, add the line to the current recipe and read the next line.
+4. Expand elements of the line which appear in an immediate expansion context.
+5. 扫描该行，查找分隔符，例如':'或' = '，以确定该行是宏赋值还是规则。
+6. Internalize the resulting operation and read the next line.
 
 ## 指定目标
 &emsp;&emsp;一般来说，`make` 的最终目标是 `Makefile`中的第一个目标，而其它目标一般是由这个目标连带出来的。这是 `make` 的默认行为。当然，一般来说，你的 Makefile 中的第一个目标是由许多个目标组成，你可以指示 `make`，让其完成你所指定的目标。要达到这一目的很简单，需在 `make` 命令后直接跟目标的名字就可以完成（如常用的 `make clean` 形式）
@@ -72,38 +119,3 @@ all: prog1 prog2 prog3 prog4
 
 另外一个很有意思的用法是结合 `-p` 和 `-v` 来输出 Makefile 被执行时的信息（这个将在后面讲述）。
 
-## make 的参数
-下面列举了所有 GNU make 3.80 版的参数定义。其它版本和产商的 `make` 大同小异，不过其它产商的 `make` 的具体参数还是请参考各自的产品文档。
-- `-b`, `-m`： 这两个参数的作用是忽略和其它版本 `make` 的兼容性。
-- `-B`, `--always-make`： 认为所有的目标都需要更新（重编译）。
-- `-C <dir>`, `--directory=<dir>`： 指定读取 Makefile 的目录。如果有多个 “-C” 参数，`make` 的解释是后面的路径以前面的作为相对路径，并以最后的目录作为被指定目录。如：`make -C ~hchen/test -C prog` 等价于 `make -C ~hchen/test/prog`。
-- `-debug[=<options>]`： 输出 make 的调试信息。它有几种不同的级别可供选择，如果没有参数，那就是输出最简单的调试信息。下面是 `<options>` 的取值：
-    - a: 也就是 all，输出所有的调试信息。（会非常的多）
-    - b: 也就是 basic，只输出简单的调试信息。即输出不需要重编译的目标。
-    - v: 也就是 verbose，在b选项的级别之上。输出的信息包括哪个makefile被解析，不需要被重编译的依赖文件（或是依赖目标）等。
-    - i: 也就是 implicit，输出所以的隐含规则。
-    - j: 也就是 jobs，输出执行规则中命令的详细信息，如命令的PID、返回码等。
-    - m: 也就是 makefile，输出 make 读取 makefile，更新 makefile，执行 makefile 的信息。
-- `-d`： 相当于“--debug=a”。
-- `-e`, `--environment-overrides`： 指明环境变量的值覆盖 makefile 中定义的变量的值。
-- `-f <file>`, `--file=<file>`, `--makefile=<file>`： 指定需要执行的makefile。
-- `-h`, `--help`： 显示帮助信息。
-- `-i` , `--ignore-errors`： 在执行时忽略所有的错误。
-- `-I <dir>`, `--include-dir=<dir>`： 指定一个被包含 makefile 的搜索目标。可以使用多个 “-I” 参数来指定多个目录。
-- `-j [<jobsnum>]`, `--jobs[=<jobsnum>]`： 指同时运行命令的个数。如果没有这个参数，make 运行命令时能运行多少就运行多少。如果有一个以上的 “-j” 参数，那么仅最后一个 “-j” 才是有效的。（注意这个参数在 MS-DOS 中是无用的）
-- `-k`, `--keep-going`： 出错也不停止运行。如果生成一个目标失败了，那么依赖于其上的目标就不会被执行了。
-- `-l <load>`, `--load-average[=<load>]`, `-max-load[=<load>]`： 指定make运行命令的负载。
-- `-n`, `--just-print`, `--dry-run`, `--recon`： 仅输出执行过程中的命令序列，但并不执行。
-- `-o <file>`, `--old-file=<file>`, `--assume-old=<file>`： 不重新生成的指定的 `<file>`，即使这个目标的依赖文件新于它。
-- `-p`, `--print-data-base`: 输出 makefile 中的所有数据，包括所有的规则和变量。这个参数会让一个简单的 makefile 都会输出一堆信息。如果你只是想输出信息而不想执行 makefile，你可以使用 “make -qp” 命令。如果你想查看执行 makefile 前的预设变量和规则，你可以使用 “make –p –f /dev/null”。这个参数输出的信息会包含着你的makefile文件的文件名和行号，所以，用这个参数来调试你的 makefile 会是很有用的，特别是当你的环境变量很复杂的时候。
-- `-q`, `--question`: 不运行命令，也不输出。仅仅是检查所指定的目标是否需要更新。如果是 0 则说明要更新，如果是 2 则说明有错误发生。
-- `-r`, `--no-builtin-rules`： 禁止make使用任何隐含规则。
-- `-R`, `--no-builtin-variabes`： 禁止make使用任何作用于变量上的隐含规则。
-- `-s`, `--silent`, `--quiet`： 在命令运行时不输出命令的输出。
-- `-S`, `--no-keep-going`, `--stop`： 取消“-k”选项的作用。因为有些时候，make的选项是从环境变量“MAKEFLAGS”中继承下来的。所以你可以在命令行中使用这个参数来让环境变量中的“-k”选项失效。
-- `-t`, `--touch`： 相当于 UNIX 的 touch 命令，只是把目标的修改日期变成最新的，也就是阻止生成目标的命令运行。
-- `-v`, `--version`： 输出 make 程序的版本、版权等关于 make 的信息。
-- `-w`, `--print-directory`： 输出运行makefile之前和之后的信息。这个参数对于跟踪嵌套式调用make时很有用。
-- `--no-print-directory`： 禁止 “-w” 选项。
-- `-W <file>`, `--what-if=<file>`, `--new-file=<file>`, `--assume-file=<file>`： 假定目标 `<file>` 需要更新，如果和 “-n” 选项使用，那么这个参数会输出该目标更新时的运行动作。如果没有“-n”那么就像运行 UNIX 的 “touch” 命令一样，使得 `<file>` 的修改时间为当前时间。
-- `--warn-undefined-variables`： 只要make发现有未定义的变量，那么就输出警告信息。

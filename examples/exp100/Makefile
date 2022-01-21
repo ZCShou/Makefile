@@ -13,3 +13,4 @@ target3: dep3 := dep1 dep2
 
 target3:
 	@echo "target3: $(dep3)"
+# Makefile: ;
