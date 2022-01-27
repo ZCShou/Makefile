@@ -24,4 +24,4 @@
 - 进阶
     - [规则处理机制](content/rules_proc.md)
 
-    - [待续](README.md)
+    - [命令处理机制](content/cmd_proc.md)

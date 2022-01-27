@@ -1,0 +1,6 @@
+all:
+	gcc -o foo foo.c
+
+.PHONY:clean
+clean:
+	rm -f foo

@@ -120,7 +120,7 @@ vpath %   blish
 而上面的语句则表示 `.c` 结尾的文件，先在 “foo” 目录，然后是 “bar” 目录，最后才是 “blish” 目录。
 
 ## 伪目标
-最早先的一个例子中，我们提到过一个“clean”的目标，这是一个“伪目标”，
+最早先的一个例子中，我们提到过一个 “clean” 的目标，这是一个 “伪目标”，
 ```makefile
 clean:
 	rm *.o temp
@@ -129,7 +129,21 @@ clean:
 
 &emsp;&emsp;因为，我们并不生成 “clean” 这个文件。“伪目标”并不是一个文件，只是一个标签，由于“伪目标”不是文件，所以 `make` 无法生成它的依赖关系和决定它是否要执行。我们只有通过显式地指明这个“目标”才能让其生效。当然，“伪目标”的取名不能和文件名重名，不然其就失去了“伪目标”的意义了。
 
-当然，为了避免和文件重名的这种情况，我们可以使用一个特殊的标记“.PHONY”来显式地指明一个目标是“伪目标”，向 `make` 说明，不管是否有这个文件，这个目标就是“伪目标”。
+> 1. 在 Makefile 中，目标 target 默认被当做文件来处理。也就意味着 make 总是尝试创建 target 文件（当然，可能由于没有相应的规则，make 无法创建 target 文件）。而当我们指明伪目标之后，make 就不会在把目标当文件来处理了。
+>
+> 2. 示例 examples/exp3 中，如果没有 clean 文件， Makefile.NoPHONY 和 Makefile.PHONY 的执行并没有区别，但是如果新建一个 clean 文件，它俩就不同了！Makefile.NoPHONY 会提示 clean 不需更新而拒绝执行响应的命令。
+>
+> 3. 在实际使用中，经常将 伪目标 合并来写，大家在见了之后不要感到疑惑。例如 Linux Kernel 根目录的 Makefile 文件中：
+> ```makefile
+>   PHONY += xxx
+>     ...
+>   PHONY += yyy
+>     ...
+>   # 在 Makefile 文件最后，将以上所有 PHONY 都设为伪目标
+>   .PHONY: $(PHONY)
+> ```
+
+当然，为了避免和文件重名的这种情况，我们可以使用一个特殊的标记 “.PHONY” 来显式地指明一个目标是“伪目标”，向 `make` 说明，不管是否有这个文件，这个目标就是 “伪目标”。
 ```makefile
 .PHONY: clean
 ```
@@ -202,9 +216,9 @@ littleoutput : text.g generate text.g -little > littleoutput
 	<commands>
 	...
 ```
-- targets 定义了一系列的目标文件，可以有通配符。是目标的一个集合。
-- target-pattern 是指明了 targets 的模式，也就是的目标集模式。
-- prereq-patterns 是目标的依赖模式，它对 target-pattern 形成的模式再进行一次依赖目标的定义。
+- **targets** 定义了一系列的目标文件，可以有通配符。是目标的一个集合。
+- **target-pattern** 是指明了 targets 的模式，也就是的目标集模式。
+- **prereq-patterns** 是目标的依赖模式，它对 target-pattern 形成的模式再进行一次依赖目标的定义。
 
 &emsp;&emsp;这样描述这三个东西，可能还是没有说清楚，还是举个例子来说明一下吧。如果我们的 `<target-pattern>` 定义成 `%.o` ，意思是我们的 `<target>` 集合中都是以 `.o` 结尾的，而如果我们的 `<prereq-patterns>` 定义成 `%.c` ，意思是对 `<target-pattern>` 所形成的目标集进行二次定义，其计算方法是，取 `<target-pattern>` 模式中的 `%` （也就是去掉了 `.o` 这个结尾），并为其加上 `.c` 这个结尾，形成的新集合。
 
@@ -282,7 +296,7 @@ main.o : main.c defs.h
 ```
 转成：
 ```makefile
-    main.o main.d : main.c defs.h
+main.o main.d : main.c defs.h
 ```
 &emsp;&emsp;于是，我们的 `.d` 文件也会自动更新了，并会自动生成了，当然，你还可以在这个 `.d` 文件中加入的不只是依赖关系，包括生成的命令也可一并加入，让每个 `.d` 文件都包含一个完赖的规则。一旦我们完成这个工作，接下来，我们就要把这些自动生成的规则放进我们的主 Makefile 中。我们可以使用 Makefile 的 “include” 命令，来引入别的 Makefile 文件（前面讲过），例如：
 
