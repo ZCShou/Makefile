@@ -7,4 +7,4 @@
 > 这里就和 `make` 的  `-jxx` 参数有关系。该参数指出同时运行命令的个数。我们需要注意的是，如果没有这个参数，`make` 运行命令时能运行多少就运行多少，而不是固定一个个执行。
 
 ## 嵌套 make
-&emsp;&emsp;这其实是命令的一个特殊情况：命令本身就是 `make -f xxx`，也就是在 Makefile 中调用 make 执行其他 Makefile。此时，`make` 并不是对每个子 `make -C` 的返回值做检测，而是对整个子 sh 的返回值做检测。确切的说应该是 `make` 调用了子进程 sh，然后 sh 又调用了子进程 `make` 运行 `make -C`，即make –> sh –> make 的关系，所以 `make` 只能看到 sh 的返回值，而 sh 中最后一条语句的返回值会作为 sh 的返回值。
+&emsp;&emsp;这其实是命令的一个特殊情况：命令本身就是 `make -f xxx`，也就是在 Makefile 中调用 make 执行其他 Makefile。此时，`make` 并不是对每个子 `make -C` 的返回值做检测，而是对整个子 sh 的返回值做检测。确切的说应该是 `make` 调用了子进程 sh，然后 sh 又调用了子进程 `make` 运行 `make -C`，即 make –> sh –> make 的关系，所以 `make` 只能看到 sh 的返回值，而 sh 中最后一条语句的返回值会作为 sh 的返回值。

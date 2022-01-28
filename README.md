@@ -1,4 +1,4 @@
-# 跟我一起写 Makefile 重制版
+# 跟我一起写 Makefile 进阶版
 &emsp;&emsp;最近，本人在移植 U-Boot 时，需要查看及修改 U-Boot 的 Makefile。由于之前对于 Makefile 可以说是一知半解，之前学的那点东西基本也消耗的差不多了，对于 U-Boot 源码中这种复杂的 Makefile 看起来是相当费力，于是在网上找到了《跟我一起写Makefile》这篇文章来系统的复习一下。
 
 &emsp;&emsp;《跟我一起写Makefile》是前辈 [陈皓](https://coolshell.cn/haoel) 发表在其 [CSDN 博客](https://blog.csdn.net/haoel/article/details/2886) 上的系列文章。对于 Makefile 的讲解很透彻，并结合了一些示例。为了避免眼高手低，同时也为了后续查阅方便，现通过将其转载并整理到 Github 的方式来学习一下。
